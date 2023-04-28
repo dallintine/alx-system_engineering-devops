@@ -1,2 +1,6 @@
 #!/bin/bash
+<<<<<<< HEAD
 echo $PATH | tr ':' '\n' | wc -l
+=======
+echo $PATH | tr -d -c ":" | echo $(($(wc -c)+1))
+>>>>>>> f76b6430d14c5b3cfa515ade96aecd5011262cd8

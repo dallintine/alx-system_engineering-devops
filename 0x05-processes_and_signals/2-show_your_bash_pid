@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
+<<<<<<< HEAD
 # a Bash script that displays lines containing the bash word
 # shellcheck disable=SC2009
 
 ps -auxf | grep bash
+=======
+#Bash script that displays a list of currently running processes.
+$"ps" "faux" | grep "bash"
+>>>>>>> f76b6430d14c5b3cfa515ade96aecd5011262cd8

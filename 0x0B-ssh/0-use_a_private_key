@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+<<<<<<< HEAD
 # Connects to server 54.86.220.207  with key in ~/.ssh/school
 
 ssh -i ~/.ssh/school ubuntu@54.86.220.207
+=======
+# Connecting to a server using ssh and key stored in ~ssh/holberton
+
+ssh -i ~/.ssh/school ubuntu@34.138.67.216
+>>>>>>> f76b6430d14c5b3cfa515ade96aecd5011262cd8

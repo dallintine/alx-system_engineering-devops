@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
+<<<<<<< HEAD
 # Kills the 4-to_infinity_and_beyond process.
 
 pkill -f 4-to_infinity_and_beyond 
+=======
+#kills the To infinity and beyond indefinitely infiniy loop.
+pkill -f 4-to_infinity_and_beyond
+>>>>>>> f76b6430d14c5b3cfa515ade96aecd5011262cd8

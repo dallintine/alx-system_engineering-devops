@@ -1,2 +1,6 @@
 #!/bin/bash
+<<<<<<< HEAD
 find . -type d -not -name . | wc -l
+=======
+Ls -Ra | find -mindepth 1 -type d | wc -l
+>>>>>>> f76b6430d14c5b3cfa515ade96aecd5011262cd8

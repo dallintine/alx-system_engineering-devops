@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+<<<<<<< HEAD
 # Does the following:
 #   Create a file /var/run/myscript.pid containing the script PID.
 #   Displays "To infinity and beyond" indefinitely
@@ -21,4 +22,31 @@ do
   trap 'echo "Y U no love me?!"' SIGINT
   trap 'echo "I hate the kill command" && terminator' SIGTERM
   trap 'terminator' SIGQUITgit 
+=======
+
+#script taht creates a file, displays to infinity and beyond indefinitely
+#diplays I hate the kill command when receiving a SIGTERM signal
+#Deletes the file created and terminaes itself  when receiving a SIGQUIT or
+#SIGTERM signal
+
+i="1"
+sudo touch /var/run/holbertonscript.pid
+sudo bash -c 'echo $$ > /var/run/holbertonscript.pid'
+hate()
+{
+echo "I hate the kill command"
+sudo rm /var/run/holbertonscript.pid
+}
+no_love()
+{
+echo "Y U no love me?!"
+}
+trap 'hate; exit' SIGTERM
+trap 'no_love; exit' SIGINT
+trap 'sudo rm /var/run/holbertonscript.pid; exit' SIGQUIT
+while [ $i -eq 1 ]
+do
+echo "To infinity and beyond"
+sleep 2
+>>>>>>> f76b6430d14c5b3cfa515ade96aecd5011262cd8
 done

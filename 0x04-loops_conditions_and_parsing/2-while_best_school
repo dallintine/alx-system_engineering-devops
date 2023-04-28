@@ -1,8 +1,19 @@
 #!/usr/bin/env bash
+<<<<<<< HEAD
 # a Bash script that displays Best School 10 times.
 count=0
 while [ $count -lt 10 ]
 do 
 echo "Best School"
 ((count++))
+=======
+#displays "Holberton School" 10 times using while loop
+
+count=0
+
+while [ $count -lt 10 ]
+do
+ echo "Best School"
+ (( count++ ))
+>>>>>>> f76b6430d14c5b3cfa515ade96aecd5011262cd8
 done

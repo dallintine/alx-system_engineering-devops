@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
+<<<<<<< HEAD
 # run apache on holbertonschool/265-0 container
 
+=======
+# gets an apache server running
+# returns a page containing Hello Holberton when querying its root
+>>>>>>> f76b6430d14c5b3cfa515ade96aecd5011262cd8
 echo "ServerName localhost" >> /etc/apache2.conf
 service apache2 start

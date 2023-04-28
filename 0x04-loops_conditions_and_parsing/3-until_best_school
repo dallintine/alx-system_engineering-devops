@@ -1,7 +1,16 @@
 #!/usr/bin/env bash
+<<<<<<< HEAD
 # a Bash script that displays Best School 10 times.
 count=0
 until [ $count -eq 10 ]; do
 	echo "Best School"
 	((count++))
+=======
+# This script is displaying "Holberton School" 10 times
+i="0"
+until [ $i -eq 10 ]
+do
+echo "Best School"
+i=$((i+1))
+>>>>>>> f76b6430d14c5b3cfa515ade96aecd5011262cd8
 done
