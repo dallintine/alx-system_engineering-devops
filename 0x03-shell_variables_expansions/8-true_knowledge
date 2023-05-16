@@ -1,2 +1,10 @@
 #!/bin/bash
+<<<<<<< HEAD
 echo $(( $TRUEKNOWLEDGE+128 ))
+=======
+<<<<<<< HEAD
+echo $((128+ $TRUEKNOWLEDGE))
+=======
+echo $((128 + $TRUEKNOWLEDGE))
+>>>>>>> f76b6430d14c5b3cfa515ade96aecd5011262cd8
+>>>>>>> 21c35ece6033d103b3c189a01f16aaaae15e1f54

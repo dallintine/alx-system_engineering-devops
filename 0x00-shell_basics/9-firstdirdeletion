@@ -1,0 +1,6 @@
+#!/bin/bash
+<<<<<<< HEAD
+rmdir /tmp/my_first_directory
+=======
+rm -d /tmp/holberton
+>>>>>>> f76b6430d14c5b3cfa515ade96aecd5011262cd8

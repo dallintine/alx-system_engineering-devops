@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # This is the ssh client system-wide configuration file.  See
 # ssh_config(5) for more information.  This file provides defaults for
 # users, and the values can be changed in per-user configuration files
@@ -52,3 +53,9 @@ Host *
     HashKnownHosts yes
     GSSAPIAuthentication yes
     GSSAPIDelegateCredentials no
+=======
+# ssh config file
+Host *
+      PasswordAuthentication no
+      IdentifyFile ~/.ssh/school
+>>>>>>> 21c35ece6033d103b3c189a01f16aaaae15e1f54

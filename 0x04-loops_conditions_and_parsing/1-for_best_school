@@ -1,6 +1,21 @@
+<<<<<<< HEAD
 !/usr/bin/env bash
 This script is displaying "Best School" 10 times.
 for ((i = 0 i < 10; i++))
 do
 	echo "Best School"
+=======
+#!/usr/bin/env bash
+<<<<<<< HEAD
+# This script is displaying "Best School" 10 times
+for ((i=0; i<10; i++))
+do
+	echo "Best School"
+=======
+# This script is displaying "Holberton School" 10 times
+for (( i=0; i<10; i++ ))
+do
+    echo "Best School"
+>>>>>>> f76b6430d14c5b3cfa515ade96aecd5011262cd8
+>>>>>>> 21c35ece6033d103b3c189a01f16aaaae15e1f54
 done

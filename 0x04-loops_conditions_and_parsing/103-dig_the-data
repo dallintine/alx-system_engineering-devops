@@ -1,5 +1,20 @@
 #!/usr/bin/env bash
+<<<<<<< HEAD
 # display the number of times a specific IP and HTTP code is found in the apache log access file
 
 awk '{ print $1,$9 }' apache-access.log | sort | uniq -c | sort -rn
 
+=======
+<<<<<<< HEAD
+# Parses Apache log files in list format.
+#   Groups visitors by IP and HTTP status code.
+#   Displays the number of occurrences, IP, and HTTP status
+#+  code of each log, in sorted order.
+
+awk '{ print $1 " " $9}' apache-access.log | sort | uniq -c | sort -rn
+=======
+#groups visitors by IP and HTTP status code, and displays this data
+
+awk '{print $1 " " $9}' apache-access.log | sort | uniq -c | sort -rn
+>>>>>>> f76b6430d14c5b3cfa515ade96aecd5011262cd8
+>>>>>>> 21c35ece6033d103b3c189a01f16aaaae15e1f54

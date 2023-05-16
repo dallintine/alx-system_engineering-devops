@@ -1,4 +1,16 @@
 #!/usr/bin/env bash
+<<<<<<< HEAD
 # listens on port 98 on localhost
 
 nc -l 98
+=======
+<<<<<<< HEAD
+# Listens on port 98 on localhost.
+
+nc -l localhost 98
+=======
+# Listens on port 98 on localhost
+
+nc -l 98
+>>>>>>> f76b6430d14c5b3cfa515ade96aecd5011262cd8
+>>>>>>> 21c35ece6033d103b3c189a01f16aaaae15e1f54

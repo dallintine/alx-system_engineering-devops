@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+<<<<<<< HEAD
 # This script is displaying "Best School" 10 times
 
 i=0
@@ -7,4 +8,23 @@ while ((i < 10))
 do
 	echo "Best School"
 	let i++
+=======
+<<<<<<< HEAD
+# a Bash script that displays Best School 10 times.
+count=0
+while [ $count -lt 10 ]
+do 
+echo "Best School"
+((count++))
+=======
+#displays "Holberton School" 10 times using while loop
+
+count=0
+
+while [ $count -lt 10 ]
+do
+ echo "Best School"
+ (( count++ ))
+>>>>>>> f76b6430d14c5b3cfa515ade96aecd5011262cd8
+>>>>>>> 21c35ece6033d103b3c189a01f16aaaae15e1f54
 done

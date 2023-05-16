@@ -1,4 +1,14 @@
 #!/usr/bin/env bash
+<<<<<<< HEAD
 # kills 4-to_infinity_and_beyond process
 
 kill "$(pgrep -f "4-to_infinity_and_beyond")"
+=======
+<<<<<<< HEAD
+# Kills the 4-to_infinity_and_beyond process
+
+=======
+#kills the To infinity and beyond indefinitely infinity loop.
+>>>>>>> f76b6430d14c5b3cfa515ade96aecd5011262cd8
+kill "$(pgrep -f 4-to_infinity_and_beyond)"
+>>>>>>> 21c35ece6033d103b3c189a01f16aaaae15e1f54

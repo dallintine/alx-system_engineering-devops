@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+<<<<<<< HEAD
 # gives you information about the holbertonschool file
 
 FILE="holbertonschool"
@@ -14,4 +15,39 @@ if [ -e "$FILE" ]; then
     fi
 else
     echo "holbertonschool file does not exist"
+=======
+<<<<<<< HEAD
+# Displays information about the file `school`.
+
+if [ -e "school" ]
+then
+  echo "school file exists"
+  if [ -s "school" ]
+=======
+#  Bash script that gives you information about the holbertonschool file.
+
+if [ -e "holbertonschool" ]
+then
+  echo "school file exists"
+  if [ -s "holbertonschool" ]
+>>>>>>> f76b6430d14c5b3cfa515ade96aecd5011262cd8
+  then
+    echo "school file is not empty"
+  else
+    echo "school file is empty"
+  fi
+
+<<<<<<< HEAD
+  if [ -f "school" ]
+  then
+    echo "school is a regular file"
+=======
+  if [ -f "holbertonschool" ]
+  then
+    echo "school file is a regular file"
+>>>>>>> f76b6430d14c5b3cfa515ade96aecd5011262cd8
+  fi
+else
+  echo "school file does not exist"
+>>>>>>> 21c35ece6033d103b3c189a01f16aaaae15e1f54
 fi

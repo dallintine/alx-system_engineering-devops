@@ -17,6 +17,7 @@
 #   If any other or no arguments are passed, displays
 #+  "Usage: manage_my_process {start|stop|restart}"
 
+<<<<<<< HEAD
 if [ "$1" == "start" ]
 then
   ./manage_my_process &
@@ -39,4 +40,27 @@ then
 
 else
   echo "Usage: manage_my_process {start|stop|restart}"
+=======
+if [ "${1}" == "start" ]
+then
+	    ./manage_my_process &
+	        touch /var/run/my_process.pid
+		    echo "$!" > /var/run/my_process.pid
+		        echo "manage_my_process started"
+		elif [ "${1}" == "stop" ]
+		then
+			    echo "manage_my_process stopped"
+			        kill "$(cat /var/run/my_process.pid)"
+				    rm /var/run/my_process.pid
+			    elif [ "${1}" == "restart" ]
+			    then
+				        kill "$(cat /var/run/my_process.pid)"
+					    rm /var/run/my_process.pid
+					        ./manage_my_process &
+						    touch /var/run/my_process.pid
+						        echo "$!" > /var/run/my_process.pid
+							    echo "manage_my_process restarted"
+						    else
+							        echo "Usage: manage_my_process {start|stop|restart}"
+>>>>>>> 21c35ece6033d103b3c189a01f16aaaae15e1f54
 fi

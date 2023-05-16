@@ -1,6 +1,28 @@
 #!/usr/bin/env bash
+<<<<<<< HEAD
 #  displays the content of the file /etc/passwd as a story
 
 while IFS=":" read USERNAME PASSWORD USER_ID GROUP_ID USER_ID_INFO HOME_DIRECTORY COMMAND_SHELL; do
     echo "The user $USERNAME is part of the $GROUP_ID gang, lives in $HOME_DIRECTORY and rides $COMMAND_SHELL. $USER_ID's place is protected by the passcode $PASSWORD, more info about the user here: $USER_ID_INFO"
 done < /etc/passwd
+=======
+<<<<<<< HEAD
+# Tells a story based on the contents of the `/etc/passwd` file.
+
+while IFS=':' read -r username password uid gid info home shell; do
+  echo "The user $username is part of the $gid gang,"\
+  "lives in $home and rides $shell."\
+  "$uid's place is protected by the passcode $password,"\
+  "more info about the user here: $info"
+=======
+#Telling the story of /etc/passwd
+
+while IFS=: read -r f1 f2 f3 f4 f5 f6 f7
+do
+    echo "The user $f1 is part of the $f4 gang,"\
+    "lives in $f6 and rides $f7."\
+    "$f3's place is protected by the passcode $f2,"\
+    "more info about the user here: $f5"
+>>>>>>> f76b6430d14c5b3cfa515ade96aecd5011262cd8
+done < "/etc/passwd"
+>>>>>>> 21c35ece6033d103b3c189a01f16aaaae15e1f54

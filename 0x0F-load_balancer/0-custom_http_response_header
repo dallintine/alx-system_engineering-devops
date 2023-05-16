@@ -1,9 +1,17 @@
 #!/usr/bin/env bash
+<<<<<<< HEAD
 # Configure Nginx so that its HTTP response contains a custom header (on web-01 and web-02)
 # The name of the custom HTTP header must be X-Served-By
 # The value of the custom HTTP header must be the hostname of the server Nginx is running on
 #sudo sed -i 's/server_name _;.*/server_name _;\n\tadd_header X-Served-By \$hostname;/' /etc/nginx/sites-enabled/default 
 sudo apt-get update
+=======
+# configure web-02 to be identical to web-01
+# The name of the custom HTTP header must be X-Served-By
+# The value of the custom HTTP header must be the hostname of the server Nginx is running on
+#sudo sed -i 's/server_name _;.*/server_name _;\n\tadd_header X-Served-By \$hostname;/' /etc/nginx/sites-enabled/default 
+sudo apt-get -y update
+>>>>>>> 21c35ece6033d103b3c189a01f16aaaae15e1f54
 sudo apt-get -y install nginx
 sudo ufw allow 'Nginx HTTP'
 sudo mkdir -p /var/www/html /var/www/error
@@ -22,7 +30,11 @@ server_config=\
 		try_files \$uri \$uri/ =404;
 	}
 	if (\$request_filename ~ redirect_me){
+<<<<<<< HEAD
 		rewrite ^ https://sketchfab.com/bluepeno/models permanent;
+=======
+		rewrite ^ https://youtube.com permanent;
+>>>>>>> 21c35ece6033d103b3c189a01f16aaaae15e1f54
 	}
 	error_page 404 /404.html;
 	location = /404.html {
@@ -31,4 +43,8 @@ server_config=\
 }"
 
 echo "$server_config" > /etc/nginx/sites-enabled/default
+<<<<<<< HEAD
 sudo service nginx restart
+=======
+sudo service nginx restart
+>>>>>>> 21c35ece6033d103b3c189a01f16aaaae15e1f54

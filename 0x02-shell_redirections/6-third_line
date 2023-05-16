@@ -1,2 +1,10 @@
 #!/bin/bash
+<<<<<<< HEAD
 sudo head -3 ./iacta | tail +3
+=======
+<<<<<<< HEAD
+head -n 3 iacta | tail -n 1
+=======
+head -3 iacta | tail -1
+>>>>>>> f76b6430d14c5b3cfa515ade96aecd5011262cd8
+>>>>>>> 21c35ece6033d103b3c189a01f16aaaae15e1f54

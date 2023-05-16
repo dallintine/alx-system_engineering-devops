@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+<<<<<<< HEAD
 # This script is displaying "Best School" 10 times, prints hi on 9th
 
 i=0
@@ -11,4 +12,29 @@ do
 	then
 		echo "Hi"
 	fi
+=======
+<<<<<<< HEAD
+# a Bash script that displays Best School 10 times, but for the 9th iteration, displays Best School and then Hi on a new line.
+count=0
+while [ $count -lt 10 ]
+do 
+if [ $count -eq 9 ]
+then
+echo "Hi"
+fi
+echo "Best School"
+((count++))
+=======
+# This script is displaying "Holberton School" 10 times
+# but for the 9th iteration, displays Holberton School and then Hi on a new line.
+i="0"
+while [ $i -lt 10 ]
+do
+echo "Best School"
+if [ $i -eq 8 ]
+then echo "Hi"
+fi
+i=$((i+1))
+>>>>>>> f76b6430d14c5b3cfa515ade96aecd5011262cd8
+>>>>>>> 21c35ece6033d103b3c189a01f16aaaae15e1f54
 done

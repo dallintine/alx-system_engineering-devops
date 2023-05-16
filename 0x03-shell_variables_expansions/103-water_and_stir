@@ -1,2 +1,6 @@
 #!/bin/bash
+<<<<<<< HEAD
 printf "%o\n" $((5#$(echo $WATER | tr "water" "01234") + 5#$(echo $STIR | tr "stir." "01234"))) | tr "01234567" "behlnort"
+=======
+printf "%o\n" $((5#$(echo $WATER | tr 'water' '01234') + 5#$(echo $STIR | tr 'stir.' '01234'))) | tr '01234567' 'bestchol'
+>>>>>>> 21c35ece6033d103b3c189a01f16aaaae15e1f54

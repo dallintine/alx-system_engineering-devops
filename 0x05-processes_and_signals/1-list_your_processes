@@ -1,4 +1,23 @@
 #!/usr/bin/env bash
+<<<<<<< HEAD
 # prints processes
 
 ps u -A -H
+=======
+# a Bash script that displays a list of currently running processes.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ps -auxf
+>>>>>>> 21c35ece6033d103b3c189a01f16aaaae15e1f54

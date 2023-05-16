@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+<<<<<<< HEAD
 # FizzBuzz!!
 
 for i in $(seq 1 100);
@@ -12,4 +13,49 @@ do
     else
 	echo "$i"
     fi
+=======
+<<<<<<< HEAD
+# Displays numbers from 1 to 100 in list format.
+#   Displays "FizzBuzz" when the number is a multiple of 3 and 5.
+#   Displays "Fizz" when the number is a multiple of 3.
+#   Displays "Buzz" when the number is a multiple of 5.
+#   Otherwise, displays the number.
+
+for num in {1..100}
+do
+  if (( num % 3 == 0 && num % 5 == 0 ))
+  then
+    echo "FizzBuzz"
+  elif (( num % 3 == 0 ))
+  then
+    echo "Fizz"
+  elif (( num % 5 == 0 ))
+  then
+    echo "Buzz"
+  else
+    echo "$num"
+  fi
+=======
+# a Bash script that displays numbers from 1 to 100.
+# Displays FizzBuzz when the number is a multiple of 3 and 5
+# Displays Fizz when the number is multiple of 3
+# Displays Buzz when the number is a multiple of 5
+# Otherwise, displays the number, In a list format
+
+for i in {1..100}
+do
+if ((i % 15 == 0))
+    then
+    echo "FizzBuzz"
+elif ((i % 5 == 0))
+    then
+    echo "Buzz"
+elif (( i % 3 == 0))
+    then
+    echo "Fizz"
+else
+    echo "$i"
+fi
+>>>>>>> f76b6430d14c5b3cfa515ade96aecd5011262cd8
+>>>>>>> 21c35ece6033d103b3c189a01f16aaaae15e1f54
 done
