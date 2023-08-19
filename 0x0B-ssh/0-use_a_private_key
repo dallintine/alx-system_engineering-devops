@@ -1,3 +1,4 @@
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQClebwwQvh/BeGM1gsK0zuGUyBkpOV0xcpUwO+uzwsdwXHZ6JaL9zQJvUP28md8W74TAfunsWIbLLvX4bLhjiaNYhSYgRBxpbfB8X/Mnr9yVl7g/mylTEAMUptB3vuaMgx3XDlIFC7Cvuo6g8qsVR+0Lb1wgbGfrp07678mX2845dkGNBJbp+H4tjJmQ44ZSfLQ9qbp+hgVqsHqhAgS2FijP3r7IfFpRUnygW3vEbzCVB0HFkKuvPz2e6wbE79TgCGHwkS/YZkt4CaRvmMZkp+cvuZ+DH9PVvoOuNdKLb9ss+FqpUvGoqJrSnVU6zC6ndZ72a6xEl1mv5qrkP3wrUCr root@cc10c29208bb
 #!/usr/bin/env bash
 # Script that uses ssh to connect to your server
 ssh -i ~/.ssh/school ubuntu@34.236.171.16
