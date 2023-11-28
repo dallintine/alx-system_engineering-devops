@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-<<<<<<< HEAD
 # Transfers a file from local to remote
 PATH_TO_FILE=$1
 IP=$2
@@ -13,7 +12,7 @@ then
 else
     scp -o StrictHostKeyChecking=no -i $PATH_TO_SSH_KEY $PATH_TO_FILE "$USERNAME@$IP:~/"
 fi
-=======
+
 # transfer a file from our client to a server
 if [ $# -lt 3 ];
 then
@@ -27,4 +26,5 @@ then
 else
     scp -o StrictHostKeyChecking=no "$1" "$3"@"$2":~/
 fi;
->>>>>>> 21c35ece6033d103b3c189a01f16aaaae15e1f54
+
+
