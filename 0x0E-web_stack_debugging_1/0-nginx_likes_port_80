@@ -1,13 +1,11 @@
 #!/usr/bin/env bash
-<<<<<<< HEAD
-#Sets nginx for listening to 80 port
-sudo sed -i "s/8080/80/" /etc/nginx/sites-enabled/default
-sudo service nginx restart
-=======
-# what’s keeping your Ubuntu container’s Nginx installation from listening on port 8?
-# configures nginx to run and listen to port 80
-
-rm /etc/nginx/sites-enabled/default
-ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
-service nginx restart
->>>>>>> 21c35ece6033d103b3c189a01f16aaaae15e1f54
+# Using your debugging skills, find out what’s keeping your Ubuntu
+# container’s Nginx installation from listening on port 80. Feel free
+# to install whatever tool you need, start and destroy as many containers
+# as you need to debug the issue. Then, write a Bash script with the
+# minimum number of commands to automate your fix.
+mv /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+cp /etc/nginx/sites-enabled/default /etc/nginx/sites-available/default 
+service nginx stop
+pkill nginx
+service nginx start
