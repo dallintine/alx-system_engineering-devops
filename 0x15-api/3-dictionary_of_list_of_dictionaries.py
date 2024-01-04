@@ -1,53 +1,60 @@
 #!/usr/bin/python3
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 21c35ece6033d103b3c189a01f16aaaae15e1f54
-"""Exports to-do list information of all employees to JSON format."""
+"""script that fetches info about all employees using an api
+and exports it in json format
+"""
 import json
 import requests
 
-if __name__ == "__main__":
-    url = "https://jsonplaceholder.typicode.com/"
-    users = requests.get(url + "users").json()
 
-    with open("todo_all_employees.json", "w") as jsonfile:
-        json.dump({
-            u.get("id"): [{
-                "task": t.get("title"),
-                "completed": t.get("completed"),
-                "username": u.get("username")
-            } for t in requests.get(url + "todos",
-                                    params={"userId": u.get("id")}).json()]
-            for u in users}, jsonfile)
-<<<<<<< HEAD
-=======
-=======
-"""Exports data in the JSON format"""
+base_url = 'https://jsonplaceholder.typicode.com'
 
 if __name__ == "__main__":
 
-    import json
-    import requests
-    import sys
+    # get users info e.g https://jsonplaceholder.typicode.com/users
+    users_url = '{}/users'.format(base_url)
 
-    users = requests.get("https://jsonplaceholder.typicode.com/users")
-    users = users.json()
-    todos = requests.get('https://jsonplaceholder.typicode.com/todos')
-    todos = todos.json()
-    todoAll = {}
+    # get info from api
+    response = requests.get(users_url)
+    # pull data from api
+    data = response.text
+    # parse the data into JSON format
+    data = json.loads(data)
 
-    for user in users:
-        taskList = []
-        for task in todos:
-            if task.get('userId') == user.get('id'):
-                taskDict = {"username": user.get('username'),
-                            "task": task.get('title'),
-                            "completed": task.get('completed')}
-                taskList.append(taskDict)
-        todoAll[user.get('id')] = taskList
+    # extract users data
+    builder = {}
+    for user in data:
+        user_id = user.get('id')
+        # print("id is: {}".format(user_id))
 
-    with open('todo_all_employees.json', mode='w') as f:
-        json.dump(todoAll, f)
->>>>>>> f76b6430d14c5b3cfa515ade96aecd5011262cd8
->>>>>>> 21c35ece6033d103b3c189a01f16aaaae15e1f54
+        user_name = user.get('username')
+        # print("username is: {}".format(user_name))
+
+        dict_key = str(user_id)
+        # print("dict_key: {}".format(dict_key))
+
+        builder[dict_key] = []
+        # get user info about todo tasks
+        # e.g https://jsonplaceholder.typicode.com/users/1/todos
+        tasks_url = '{}/todos?userId={}'.format(base_url, user_id)
+        # print("tasks url is: {}".format(tasks_url))
+
+        # get info from api
+        response = requests.get(tasks_url)
+        # pull data from api
+        tasks = response.text
+        # parse the data into JSON format
+        tasks = json.loads(tasks)
+        # print("JSOON LOADS IS: {}".format(tasks))
+
+        for task in tasks:
+            json_data = {
+                "task": task['title'],  # or use get method
+                "completed": task['completed'],
+                "username": user_name
+            }
+            # append dictionary key to the dictionary
+            builder[dict_key].append(json_data)
+    # write the data to the file
+    json_encoded_data = json.dumps(builder)
+    with open('todo_all_employees.json', 'w', encoding='UTF8') as myFile:
+        myFile.write(json_encoded_data)

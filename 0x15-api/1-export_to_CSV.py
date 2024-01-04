@@ -1,49 +1,53 @@
 #!/usr/bin/python3
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 21c35ece6033d103b3c189a01f16aaaae15e1f54
-"""Exports to-do list information for a given employee ID to CSV format."""
-import csv
+"""script that fetches info about a given employee using an api
+and exports it in csv format
+"""
+import json
 import requests
 import sys
 
+
+base_url = 'https://jsonplaceholder.typicode.com'
+
 if __name__ == "__main__":
+
     user_id = sys.argv[1]
-    url = "https://jsonplaceholder.typicode.com/"
-    user = requests.get(url + "users/{}".format(user_id)).json()
-    username = user.get("username")
-    todos = requests.get(url + "todos", params={"userId": user_id}).json()
 
-    with open("{}.csv".format(user_id), "w", newline="") as csvfile:
-        writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
-        [writer.writerow(
-            [user_id, username, t.get("completed"), t.get("title")]
-         ) for t in todos]
-<<<<<<< HEAD
-=======
-=======
-"""Exports data in the CSV format"""
+    # get user info e.g https://jsonplaceholder.typicode.com/users/1/
+    user_url = '{}/users?id={}'.format(base_url, user_id)
+    # print("user url is: {}".format(user_url))
 
-if __name__ == "__main__":
+    # get info from api
+    response = requests.get(user_url)
+    # pull data from api
+    data = response.text
+    # parse the data into JSON format
+    data = json.loads(data)
+    # extract user data, in this case, username of employee
+    user_name = data[0].get('username')
+    # print("id is: {}".format(user_id))
+    # print("name is: {}".format(user_name))
 
-    import csv
-    import requests
-    import sys
+    # get user info about todo tasks
+    # e.g https://jsonplaceholder.typicode.com/users/1/todos
+    tasks_url = '{}/todos?userId={}'.format(base_url, user_id)
+    # print("tasks url is: {}".format(tasks_url))
 
-    userId = sys.argv[1]
-    user = requests.get("https://jsonplaceholder.typicode.com/users/{}"
-                        .format(userId))
-    name = user.json().get('username')
-    todos = requests.get('https://jsonplaceholder.typicode.com/todos')
+    # get info from api
+    response = requests.get(tasks_url)
+    # pull data from api
+    tasks = response.text
+    # parse the data into JSON format
+    tasks = json.loads(tasks)
 
-    filename = userId + '.csv'
-    with open(filename, mode='w') as f:
-        writer = csv.writer(f, delimiter=',', quotechar='"',
-                            quoting=csv.QUOTE_ALL, lineterminator='\n')
-        for task in todos.json():
-            if task.get('userId') == int(userId):
-                writer.writerow([userId, name, str(task.get('completed')),
-                                 task.get('title')])
->>>>>>> f76b6430d14c5b3cfa515ade96aecd5011262cd8
->>>>>>> 21c35ece6033d103b3c189a01f16aaaae15e1f54
+    # build the csv
+    builder = ""
+    for task in tasks:
+        builder += '"{}","{}","{}","{}"\n'.format(
+            user_id,
+            user_name,
+            task['completed'],  # or use get method
+            task['title']
+        )
+    with open('{}.csv'.format(user_id), 'w', encoding='UTF8') as myFile:
+        myFile.write(builder)
