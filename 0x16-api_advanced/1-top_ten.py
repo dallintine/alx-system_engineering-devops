@@ -1,28 +1,27 @@
 #!/usr/bin/python3
 """
-Write a Python script that queries the Reddit API and returns the number of
-subscribers (not active users, total subscribers) for a given subreddit.
-If an invalid subreddit is given, the function should return 0
+Function that queries the Reddit API and prints the titles
+of the first 10 hot posts listed for a given subreddit.
 """
-import json
-# import pprint
-import requests
-import sys
 
-headers = {
-    'User-Agent': 'My User Agent 1.0'
-}
+import requests
 
 
 def top_ten(subreddit):
-    """function that returns the titles of the first 10 hot posts"""
-    try:
-        url = 'https://www.reddit.com/r/'
-        response = requests.get(url + subreddit + "/hot.json?limit=10",
-                                headers=headers, allow_redirects=False)
-        myArray = [element['data']['title'] for element in response.
-                   json()['data']['children']]
-        print(*myArray, sep='\n')
-        # pprint.pprint(response.json())
-    except:
+    """
+    Function that queries the Reddit API
+    - If not a valid subreddit, print None.
+    """
+    req = requests.get(
+        "https://www.reddit.com/r/{}/hot.json".format(subreddit),
+        headers={"User-Agent": "Custom"},
+        params={"limit": 10},
+    )
+
+    if req.status_code == 200:
+        for get_data in req.json().get("data").get("children"):
+            dat = get_data.get("data")
+            title = dat.get("title")
+            print(title)
+    else:
         print(None)
