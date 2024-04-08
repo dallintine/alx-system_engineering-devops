@@ -1,40 +1,37 @@
 #!/usr/bin/python3
 """
-Write a recursive function that queries the Reddit API and returns a list
-containing the titles of all hot articles for a given subreddit.
+Recursive function that queries the Reddit API and returns
+a list containing the titles of all hot articles for a given subreddit.
 If no results are found for the given subreddit,
 the function should return None.
 """
-import json
-import pprint
+
 import requests
-import sys
-
-headers = {
-    'User-Agent': 'My User Agent 1.0'
-}
-after = None
 
 
-def recurse(subreddit, hot_list=[]):
-    """function that returns a list with the titles of all hot articles"""
-    try:
-        url = 'https://www.reddit.com/r/'
-        global after
-        if after:
-            response = requests.get(url + subreddit + "/hot.json?after=" +
-                                    after, headers=headers,
-                                    allow_redirects=False)
-            # pprint.pprint(response.json())
+def recurse(subreddit, hot_list=[], after=""):
+    """
+    Queries the Reddit API and returns
+    a list containing the titles of all hot articles for a given subreddit.
+
+    - If not a valid subreddit, return None.
+    """
+    req = requests.get(
+        "https://www.reddit.com/r/{}/hot.json".format(subreddit),
+        headers={"User-Agent": "Custom"},
+        params={"after": after},
+    )
+
+    if req.status_code == 200:
+        for get_data in req.json().get("data").get("children"):
+            dat = get_data.get("data")
+            title = dat.get("title")
+            hot_list.append(title)
+        after = req.json().get("data").get("after")
+
+        if after is None:
+            return hot_list
         else:
-            response = requests.get(url + subreddit + "/hot.json",
-                                    headers=headers, allow_redirects=False)
-            # pprint.pprint(response.json())
-        after = response.json()['data']['after']
-        hot_list += [element['data']['title'] for element in response.
-                     json()['data']['children']]
-        if after:
-            return recurse(subreddit, hot_list)
-        return hot_list
-    except:
+            return recurse(subreddit, hot_list, after)
+    else:
         return None
