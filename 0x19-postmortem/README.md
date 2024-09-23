@@ -1,63 +1,36 @@
-<<<<<<< HEAD
-# Postmortem
+Outage of Nursing Management App Attendance Feature
 
-Upon the release of Alx School's System Python  project, approximately 12hours (EAT), an outage occurred on an isolated Ubuntu 20.04 container running on Apache server. GET requests on the server led to `500 Internal Server Error`'s, when the expected response was an HTML file defining a simple Holberton site..
+Issue Summary
+Duration: The outage lasted for 2 hours, from 11:00 AM to 1:00 PM UTC on September 20th, 2024.
+Impact: The biometric attendance feature became unavailable, affecting 85% of users. Nursing school administrators and instructors were unable to log student attendance. Users experienced timeouts and errors when trying to capture fingerprints, disrupting normal class check-ins.
+Root Cause: The root cause was a misconfigured database query that led to excessive load times, compounded by a memory leak in the biometric device integration module.
 
-## Debugging Process
+Timeline
+11:00 AM: Issue detected by automatic system monitoring alerts showing increasing API response times.
+11:05 AM: The engineering team was notified via Slack after receiving multiple error logs from the biometric system.
+11:10 AM: Initial investigation focused on the backend API serving attendance data.
+11:30 AM: Assumption made that the API gateway configuration was the issue due to recent changes in traffic management, but no irregularities were found.
+11:45 AM: Escalation to the database and biometric integration team after realizing the problem persisted beyond the API layer.
+12:00 PM: Misleading investigation into a suspected timeout issue between the biometric device and the server.
+12:30 PM: Discovery of a memory leak in the biometric SDK integration and inefficient database queries causing excessive load on the server.
+12:45 PM: Patch applied to fix the SQL query and restart the affected services.
+1:00 PM: Biometric attendance system fully restored and performance normalized.
 
-Bug debugger Brennan (BDB... as in my actual initials... made that up on the spot, pretty
-good, huh?) encountered the issue upon opening the project and being, well, instructed to
-address it, roughly 19:20 PST. He promptly proceeded to undergo solving the problem.
+Root Cause and Resolution
+Root Cause: The primary issue was a poorly optimized SQL query used in the biometric attendance feature. The query retrieved unnecessary data, causing it to take longer to execute under heavy load. Additionally, a memory leak in the biometric SDK integration module gradually consumed available system resources, slowing the entire service.
+Resolution: The inefficient query was rewritten to only retrieve the necessary fields, reducing execution time by 80%. A memory leak fix was applied by refactoring the biometric device interaction module to handle multiple biometric scans without excessive memory consumption. After these patches were deployed, the system was restarted, and the attendance feature resumed normal operations.
 
-1. Checked running processes using `ps aux`. Two `apache2` processes - `root` and `www-data` -
-were properly running.
+Corrective and Preventative Measures
+Areas of Improvement:
+Database Query Optimization: Improve query performance for high-traffic scenarios to prevent future slowdowns.
+SDK Integration Testing: Strengthen integration testing with biometric devices to catch memory leaks before production.
+Alert System Enhancement: Enhance real-time alerting for abnormal memory consumption and slow database queries.
+Load Testing: Perform more thorough load testing on biometric integrations to ensure the system scales during peak usage times.
+Action Items:
+Optimize all SQL queries in the biometric attendance module.
+Refactor the biometric device SDK integration to prevent memory leaks and improve efficiency.
+Add monitoring on database response times and memory consumption.
+Implement end-to-end load testing for the attendance module under simulated peak conditions.
+Update the incident response playbook with biometric-specific debugging steps.
 
-2. Looked in the `sites-available` folder of the `/etc/apache2/` directory. Determined that
-the web server was serving content located in `/var/www/html/`.
-
-3. In one terminal, ran `strace` on the PID of the `root` Apache process. In another, curled
-the server. Expected great things... only to be disappointed. `strace` gave no useful
-information.
-
-4. Repeated step 3, except on the PID of the `www-data` process. Kept expectations lower this
-time... but was rewarded! `strace` revelead an `-1 ENOENT (No such file or directory)` error
-occurring upon an attempt to access the file `/var/www/html/wp-includes/class-wp-locale.phpp`.
-
-5. Looked through files in the `/var/www/html/` directory one-by-one, using Vim pattern
-matching to try and locate the erroneous `.phpp` file extension. Located it in the
-`wp-settings.php` file. (Line 137, `require_once( ABSPATH . WPINC . '/class-wp-locale.php' );`).
-
-6. Removed the trailing `p` from the line.
-
-7. Tested another `curl` on the server. 200 A-ok!
-
-8. Wrote a Puppet manifest to automate fixing of the error.
-
-## Summation
-
-In short, a typo. Gotta love'em. In full, the WordPress app was encountering a critical
-error in `wp-settings.php` when tyring to load the file `class-wp-locale.phpp`. The correct
-file name, located in the `wp-content` directory of the application folder, was
-`class-wp-locale.php`.
-
-Patch involved a simple fix on the typo, removing the trailing `p`.
-
-That was all needed!
-=======
-# Server requests failure report
-Last week, it was reported that the platform was returning 500 Error on all requests made on the platform routes, all the services were down.  90% of the users were affected. The root cause was the failure of our master server web-01.
-
-## Timeline
-The error was realized on Saturday 27th August 1000 hours (West Africa Time) when Mr Williams saw the master server lagging in speed. Our engineers on call disconnected the master server web-01 for further system analysis and channelled all requests to client server web-02. They soled problem by Sunday 27th August 2200 hours (West Africa Time).
-
-## cause and resolution
-The platform is served by 2 ubuntu cloud servers. The master server web-01 was connected to serve all requests, and it stopped functioning due to memory outage as a results of so many requests because during a previous test, the client server web-02 was disconnected temporarily for testing and was not connected to the load balancer afterwards. 
-
-
-The issue was fixed when the master server was temporarily disconnected for memory clean-up then connected back to the loadbalancer and round-robin algorithm was configured so that both the master and client servers can handle equal amount of requests.
-
-## Prevention against such problem in future
-- Choose the best loadbalancing algorithm for your programs
-- Always keep an eye on your servers to ensure they are running properly
-- Have extra back-up servers to prevent your program fro completely going offline during an issue
->>>>>>> 21c35ece6033d103b3c189a01f16aaaae15e1f54
+By addressing the root cause, the Nursing Management App's performance has been stabilized, and preventative measures are being put in place to avoid similar outages in the future.
